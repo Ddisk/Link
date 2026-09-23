@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="theme-color" content="#111318" />
+
+  <!-- 検索エンジンに表示させない設定 -->
+
+  <meta
+
+    name="robots"
+
+    content="noindex, nofollow, noarchive, nosnippet, noimageindex"
+
+  />
+
+  <title>リンク一覧</title>
+
+  <style>
+
+    :root {
+
+      --bg: #0f1115;
+
+      --card: #171a21;
+
+      --card-hover: #1f2430;
+
+      --text: #f5f7fa;
+
+      --sub: #aeb6c2;
+
+      --line: #2a303b;
+
+      --accent: #ffd54a;
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      background:
+
+        radial-gradient(
+
+          circle at top,
+
+          rgba(255, 213, 74, 0.08),
+
+          transparent 32rem
+
+        ),
+
+        var(--bg);
+
+      color: var(--text);
+
+      font-family:
+
+        -apple-system,
+
+        BlinkMacSystemFont,
+
+        "Segoe UI",
+
+        "Helvetica Neue",
+
+        Arial,
+
+        "Noto Sans JP",
+
+        sans-serif;
+
+    }
+
+    a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+    .wrap {
+
+      width: min(680px, calc(100% - 28px));
+
+      margin: 0 auto;
+
+      padding: 48px 0 64px;
+
+    }
+
+    .profile {
+
+      text-align: center;
+
+      margin-bottom: 30px;
+
+    }
+
+    .icon {
+
+      width: 92px;
+
+      height: 92px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 38px;
+
+      font-weight: 800;
+
+      background: linear-gradient(145deg, #ffe66b, #ffbd2e);
+
+      color: #1b1b1b;
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+
+      border: 3px solid rgba(255, 255, 255, 0.16);
+
+      user-select: none;
+
+    }
+
+    h1 {
+
+      margin: 0;
+
+      font-size: clamp(26px, 7vw, 36px);
+
+      letter-spacing: 0.04em;
+
+    }
+
+    .description {
+
+      margin: 10px auto 0;
+
+      max-width: 520px;
+
+      color: var(--sub);
+
+      font-size: 14px;
+
+      line-height: 1.8;
+
+    }
+
+    .section-title {
+
+      margin: 28px 4px 10px;
+
+      font-size: 13px;
+
+      color: var(--sub);
+
+      font-weight: 700;
+
+      letter-spacing: 0.08em;
+
+    }
+
+    .links {
+
+      display: grid;
+
+      gap: 12px;
+
+    }
+
+    .link-card {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+      min-height: 74px;
+
+      padding: 14px 16px;
+
+      border-radius: 18px;
+
+      background: rgba(23, 26, 33, 0.94);
+
+      border: 1px solid var(--line);
+
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.13);
+
+      transition:
+
+        transform 0.18s ease,
+
+        background 0.18s ease,
+
+        border-color 0.18s ease;
+
+    }
+
+    .link-card:hover {
+
+      transform: translateY(-2px);
+
+      background: var(--card-hover);
+
+      border-color: rgba(255, 213, 74, 0.45);
+
+    }
+
+    .link-card:active {
+
+      transform: scale(0.985);
+
+    }
+
+    .link-icon {
+
+      flex: 0 0 auto;
+
+      width: 46px;
+
+      height: 46px;
+
+      border-radius: 14px;
+
+      display: grid;
+
+      place-items: center;
+
+      background: rgba(255, 213, 74, 0.1);
+
+      border: 1px solid rgba(255, 213, 74, 0.18);
+
+      font-size: 22px;
+
+    }
+
+    .link-text {
+
+      min-width: 0;
+
+      flex: 1;
+
+    }
+
+    .link-name {
+
+      display: block;
+
+      font-size: 16px;
+
+      font-weight: 750;
+
+      line-height: 1.35;
+
+    }
+
+    .link-note {
+
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--sub);
+
+      font-size: 12px;
+
+      line-height: 1.45;
+
+    }
+
+    .arrow {
+
+      flex: 0 0 auto;
+
+      color: var(--sub);
+
+      font-size: 20px;
+
+      padding-left: 4px;
+
+    }
+
+    footer {
+
+      margin-top: 36px;
+
+      text-align: center;
+
+      color: #747e8c;
+
+      font-size: 11px;
+
+    }
+
+    @media (max-width: 480px) {
+
+      .wrap {
+
+        width: min(100% - 20px, 680px);
+
+        padding-top: 34px;
+
+      }
+
+      .link-card {
+
+        min-height: 70px;
+
+        border-radius: 16px;
+
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      * {
+
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header class="profile">
+
+      <div class="icon">🔗</div>
+
+      <h1>リンク一覧</h1>
+
+      <p class="description">
+
+        作成したWebページをまとめています。
+
+      </p>
+
+    </header>
+
+    <div class="section-title">
+
+      MY TOOLS
+
+    </div>
+
+    <section class="links">
+
+      <!-- VBA・マクロ -->
+
+      <a
+
+        class="link-card"
+
+        href="https://ddisk.github.io/macro/"
+
+        target="_blank"
+
+        rel="noopener noreferrer"
+
+      >
+
+        <div class="link-icon">
+
+          📊
+
+        </div>
+
+        <div class="link-text">
+
+          <span class="link-name">
+
+            VBA・マクロ解説
+
+          </span>
+
+          <span class="link-note">
+
+            Excel VBA・マクロの仕組みをわかりやすく紹介
+
+          </span>
+
+        </div>
+
+        <span class="arrow">
+
+          ›
+
+        </span>
+
+      </a>
+
+      <!-- 公差 -->
+
+      <a
+
+        class="link-card"
+
+        href="https://ddisk.github.io/tolerance/"
+
+        target="_blank"
+
+        rel="noopener noreferrer"
+
+      >
+
+        <div class="link-icon">
+
+          📐
+
+        </div>
+
+        <div class="link-text">
+
+          <span class="link-name">
+
+            公差・幾何公差
+
+          </span>
+
+          <span class="link-note">
+
+            寸法公差や幾何公差についてまとめたページ
+
+          </span>
+
+        </div>
+
+        <span class="arrow">
+
+          ›
+
+        </span>
+
+      </a>
+
+    </section>
+
+    <footer>
+
+      © Link Page
+
+    </footer>
+
+  </main>
+
+</body>
+
+</html>
